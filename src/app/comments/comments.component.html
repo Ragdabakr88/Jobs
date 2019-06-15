@@ -1,0 +1,53 @@
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-md-4 colxs-12"><app-side></app-side></div>
+    <div class="col-md-8 colxs-12">
+      <mat-card class="card mat-elevation-z10">
+        <div class="row">
+            <form class="col s12 mat-elevation-z20" #commentForm="ngForm" >
+                <label for="comment">Write new comment</label>
+                <textarea id="comment" class="materialize-textarea"
+                name="comment"
+                [(ngModel)]="newComment.comment"
+                #comment="ngModel"
+                required
+                ></textarea>  
+                
+               <div class="file-field input-field ">
+                   <div class="row"> 
+                    <!-- <div class="btn co s8">
+                      <span>Image</span>
+                      <input type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                      </div> -->
+                     
+                    <div class=" post co s4">
+                        <input class="waves-effect waves-light btn-small" [disabled]="!commentForm.form.valid" (click)="createComment()" type="submit" name="Add Comment" />
+                    </div>
+        
+                  </div>
+                </div>
+            </form>
+          </div>
+        </mat-card>
+      
+        <div class="col-md-12 colxs-12 commentContainer" *ngFor="let c of comments">
+        <mat-card class="box">
+          <img src="/assets/img/photo.jpg" alt="" class="circle">
+           <!-- <span class="title">{{comment.username}}</span>  -->
+           <p>{{c.comment}}</p> 
+           <p class="date">{{c.createdAt | date}}</p>
+            </mat-card>
+            
+        </div>
+
+   
+    </div>
+  </div>
+
+
+</div>
+
+

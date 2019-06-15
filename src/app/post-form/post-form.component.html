@@ -1,0 +1,31 @@
+<mat-card class="card mat-elevation-z10">
+<div class="row">
+    <form class="col s12 mat-elevation-z20" #postForm="ngForm" >
+        <label for="post">Write new post</label>
+        <textarea id="post" class="materialize-textarea"
+        name="post"
+        [(ngModel)]="newPost.post"
+        #post="ngModel"
+        required
+        
+        ></textarea>  
+        
+         <div class="file-field input-field ">
+           <div class="row">
+            <div class="btn co s8">
+              <span>Image</span>
+              <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text" placeholder="Upload one or more files">
+              </div>
+             
+            <div class=" post co s4">
+                <input class="waves-effect waves-light btn-small" [disabled]="!postForm.valid" (click)="createPost()" type="submit" name="Post" />
+            </div>
+
+          </div>
+        </div>
+    </form>
+  </div>
+</mat-card>

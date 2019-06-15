@@ -1,0 +1,42 @@
+<img src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{picVersion}}/{{picId}}">
+<h1>{{reciverName}}</h1>
+<p *ngIf='isOnline'>Online</p>
+<form  (ngSubmit)='sendMessage()' (keypress)="IsTyping()" class="form">
+		<input type="text" placeholder="Write your message..." 
+		[(ngModel)]="message" 
+		name="message"
+		/>
+
+		<div style="text-align:center">
+
+			<i
+			(click)="toggled = !toggled"
+			[(emojiPickerIf)]="toggled"
+			[emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+			(emojiPickerSelect)="handleSelection($event)">😄</i>
+		  
+		  </div>
+
+		<button> Send</button>
+		</form>
+
+		<div class="messages"   >
+				<ul *ngFor="let m of msgArray"  ngx-auto-scroll lock-y-offset="10" observe-attributes>
+					<li class="sent"  >
+						<!-- <img src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{picVersionSender}}/{{picIdSender}}"> -->
+						<p>{{m.sender}}</p>
+						<p>{{m.body}}</p>
+					</li>
+					<li class="replies" *ngIf='reciever' style="font-size: 30px">
+						<img src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{picVersion}}/{{picId}}">
+						<p>{{m.reciever}}</p>
+						<p>{{m.body}}</p>
+					</li>	
+				
+				</ul>
+
+				<div class="typing" >
+						<p>{{reciver}} is typing ...</p>
+				</div>
+
+			</div>

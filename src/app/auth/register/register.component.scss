@@ -1,0 +1,35 @@
+.container{
+	margin-top: 130px;
+	text-align: center;
+
+}
+.login-register-page{
+	text-align: center;
+	margin-right: 25%;
+	margin-left:25%;
+}
+.account-type {
+	display: flex;
+	width: 100% !important;
+    margin: 0 0 20px 0;
+}
+
+.social-login-buttons {
+    display: flex;
+	width: 100% !important;
+}
+#register-account-form{
+	padding-right: 20px;
+}
+@media only screen and (max-width: 600px) {
+	.login-register-page{
+		text-align: center;
+		margin-right: 5%;
+		margin-left:5%;
+	}
+    .account-type {
+		display: flex;
+		width: 100% !important;
+		margin: 0 0 20px 0;
+	}
+  }

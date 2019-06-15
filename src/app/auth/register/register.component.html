@@ -1,0 +1,132 @@
+
+<!-- Page Content
+================================================== -->
+<div class="container">
+	<div class="row">
+		<div class="col-xl-12 col-xs-12">
+
+			<div class="login-register-page">
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3 style="font-size: 26px;">سجل معنا الان</h3>
+					<span>هل لديك حساب؟ <a href="/login">دخول</a></span>
+        </div>
+      <div *ngIf="errors.length>0" class="alert alert-danger alert-dismissible fade in">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <p *ngFor="let error of errors">
+              {{error.detail}}
+            </p>
+        </div>
+
+				<!-- Account Type -->
+				<div class="account-type">
+            <div>
+                <input type="radio"   id="freelancer-radio" class="account-type-radio" 
+                [(ngModel)]="formData.role" 
+                #role="ngModel"
+                name="role"
+                value="freelancer" 
+                checked=""/>
+                <label for="freelancer-radio" class="ripple-effect-dark"><i class="icon-material-outline-account-circle"></i> باحث عن عمل</label>
+              </div>
+    
+              <div>
+                <input type="radio" value="employee" id="employer-radio" class="account-type-radio"
+                [(ngModel)]="formData.role" 
+                #role="ngModel"
+                name="role"
+                />
+                <label for="employer-radio" class="ripple-effect-dark"><i class="icon-material-outline-business-center"></i>صاحب عمل</label>
+              </div>
+				</div>
+					
+				<!-- Form -->
+				<form method="post" id="register-account-form" #registerform="ngForm" >
+					<div class="input-with-icon-left">
+						<i class="icon-material-baseline-mail-outline"></i>
+            <input type="text" class="input-text with-border"  placeholder="اسم المستخدم" 
+             [(ngModel)]="formData.username" 
+            #username="ngModel"
+            name="username"
+            required minlength="4"
+            appForbiddenName="bob"
+            required/>
+          </div>
+          
+          <div *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="notification error closeable" role="alert" >
+          <div *ngIf="username.errors.required">
+             اسم المستخدم مطلوب 
+          </div>
+          <div *ngIf="username.errors.minlength">
+             اسم المستخدم يجب ان يكون 4 احرف او اكثر
+          </div>
+          <div *ngIf="username.errors.forbiddenName">
+             اسم المستخدم لا يمكن ان يكون bob
+           </div>
+          </div>
+
+          <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+						<i class="icon-material-outline-lock"></i>
+						<input type="email" class="input-text with-border" placeholder="الايميل"   [(ngModel)]="formData.email" 
+            #email="ngModel"
+            name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+            required>
+            </div>
+            
+            <div *ngIf="email.errors && email.invalid && (email.dirty || email.touched)"
+            class="notification error closeable" role="alert" >
+            <div *ngIf="email.errors.required">
+                الايميل مطلوب 
+             </div>
+             <div [hidden]="!email.errors?.pattern">
+               الايميل غير صحيح
+              </div> 
+
+            </div>
+
+					<div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+						<i class="icon-material-outline-lock"></i>
+            <input type="password" class="input-text with-border" placeholder="كلمه المرور"  
+             [(ngModel)]="formData.password" 
+             #password="ngModel"
+             name="password"
+             required minlength="6"
+             appForbiddenName="bob"
+             required/>
+            </div>
+
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="notification error closeable" role="alert" >
+            <div *ngIf="password.errors.required">
+              كلمه المرور مطلوبه 
+            </div>
+            <div *ngIf="password.errors.minlength">
+               كلمه المرور يجب ان تكون 6 احرف او اكثر
+            </div>
+            <div *ngIf="password.errors.forbiddenName">
+               اسم المستخدم لا يمكن ان يكون bob
+             </div>
+            </div>
+
+            <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+              <i class="icon-material-outline-lock"></i>
+              <input type="password" class="input-text with-border" placeholder="مطابقه كلمه المرور"  
+               [(ngModel)]="formData.passwordConfirmation" 
+                #passwordConfirmation="ngModel"
+                name="passwordConfirmation"
+                required minlength="6"
+                appForbiddenName="bob"
+                required>
+              </div>
+            <input type="submit"  [disabled]="!registerForm.form.valid" (click)="register()"  class="button full-width button-sliding-icon ripple-effect margin-top-10" value="تسجيل">
+				</form>
+		</div>
+	</div>
+</div>
+
+
+<!-- Spacer -->
+<div class="margin-top-70"></div>
+<!-- Spacer / End-->

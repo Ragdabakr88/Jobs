@@ -1,0 +1,24 @@
+<div class="col-md-8">
+<form action="#">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" ng2FileSelect [uploader]="uploader" (onFileSelected)="OnFileSelect($event)">
+        
+      </div>
+      <div class="file-path-wrapper" >
+        <input class="file-path validate" id='filePath' type="text">
+      </div>
+
+    </div>
+    <button (click)='upload()' style="margin-top:50px">Upload image</button>
+  </form>
+
+
+  <div class="images" style="margin-top:50px" *ngFor='let image of images'>
+      <div class="col-md-8">
+       <img src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{image.imgVersion}}/{{image.imgId}}">
+       <button (click)='setProfileImage(image)'>set as profile</button>
+      </div>
+  </div>
+</div>

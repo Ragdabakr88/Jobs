@@ -1,0 +1,71 @@
+
+
+<div *ngIf="notifyMessage" class="alert alert-success">
+  {{notifyMessage}}
+</div>
+
+<!-- Page Content
+================================================== -->
+<div class="container" >
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="login-register-page">
+          <!-- Welcome Text -->
+          <div class="welcome-text">
+              <div *ngIf="notifyMessage"  class="alert alert-success alert-dismissible fade in">
+                  <a href="#"    class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <strong class="notify">{{notifyMessage}}</strong>
+                  <br>
+                  <a routerLink="/login">للدخول للموقع </a>
+                </div>
+            <h3>تحديث كلمه المرور</h3>
+          </div>
+            
+          <!-- Form -->
+          <form method="post" id="login-form" #resetForm="ngForm">
+            <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+                <i class="icon-material-outline-lock"></i>
+                <input type="password" class="input-text with-border" placeholder="كلمه المرور"  
+                 [(ngModel)]="resetData.password" 
+                 #password="ngModel"
+                 name="password"
+                 required minlength="6"
+                 appForbiddenName="bob"
+                 required/>
+                </div>
+    
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="notification error closeable" role="alert" >
+                <div *ngIf="password.errors.required">
+                  كلمه المرور مطلوبه 
+                </div>
+                <div *ngIf="password.errors.minlength">
+                   كلمه المرور يجب ان تكون 6 احرف او اكثر
+                </div>
+                <div *ngIf="password.errors.forbiddenName">
+                   اسم المستخدم لا يمكن ان يكون bob
+                 </div>
+                </div>
+    
+                <div class="input-with-icon-left" title="Should be at least 8 characters long" data-tippy-placement="bottom">
+                  <i class="icon-material-outline-lock"></i>
+                  <input type="password" class="input-text with-border" placeholder="مطابقه كلمه المرور"  
+                   [(ngModel)]="resetData.passwordConfirmation" 
+                    #passwordConfirmation="ngModel"
+                    name="passwordConfirmation"
+                    required minlength="6"
+                    appForbiddenName="bob"
+                    required>
+                  </div>
+
+            <input [disabled]="!resetForm.form.valid" type="submit"  (click)="Submit(token)" class="button full-width button-sliding-icon ripple-effect margin-top-10" value="ارسل">
+          </form>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Spacer -->
+  <div class="margin-top-70"></div>
+  <!-- Spacer / End-->
+  

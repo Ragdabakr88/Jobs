@@ -1,0 +1,59 @@
+
+
+<!-- Page Content
+================================================== -->
+<div class="container" >
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="login-register-page">
+					<div *ngIf="errors.length>0" class="alert alert-danger alert-dismissible fade in">
+							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							<p *ngFor="let error of errors">
+								{{error.detail}}
+							  </p>
+						  </div>
+				<!-- Welcome Text -->
+				<div class="welcome-text">
+					<h3>سعداء لرؤيتك مجددا</h3>
+					<span>لا امتلك حساب <a href="/register">التسجيل</a></span>
+				</div>
+					
+				<!-- Form -->
+				<form method="post" id="login-form" #loginForm="ngForm">
+					<div class="input-with-icon-left">
+						<i class="icon-material-baseline-mail-outline"></i>
+						<input type="text" class="input-text with-border" name="emailaddress" id="emailaddress" placeholder="Email Address"
+						[(ngModel)]="formData.email" 
+						#email="ngModel"
+						name="email"
+						required/>
+					</div>
+
+					<div class="input-with-icon-left">
+						<i class="icon-material-outline-lock"></i>
+						<input type="password" class="input-text with-border" name="password" id="password" placeholder="Password"
+						[(ngModel)]="formData.password" 
+						#password="ngModel"
+						name="password"
+						required/>
+					</div>
+          <a (click)='forgotPass()' class="forgot-password">هل نسيت كلمه المرور؟</a>
+          <input type="submit"  [disabled]="!loginForm.form.valid" (click)="login()"   class="button full-width button-sliding-icon ripple-effect margin-top-10" value="دخول">
+				</form>
+
+				
+				<!-- Social Login -->
+				<!-- <div class="social-login-separator"><span>or</span></div>
+				<div class="social-login-buttons">
+					<button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Log In via Facebook</button>
+          <a  href="/api/v1/auth/google"  ><button class="google-login ripple-effect" type="button" ><i class="icon-brand-google-plus-g"></i> التسجيل عن طريق Google</button></a>
+				</div>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+
+<!-- Spacer -->
+<div class="margin-top-70"></div>
+<!-- Spacer / End-->

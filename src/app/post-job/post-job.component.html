@@ -1,0 +1,474 @@
+
+<!-- Dashboard Container -->
+<style>
+.submit-field h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    text-align: right;
+}
+
+form{
+  background-color: #ffffff;
+}
+</style>
+
+<div class="dashboard-container">
+
+<app-side></app-side>
+
+
+	<!-- Dashboard Content
+	================================================== -->
+	<div class="dashboard-content-container" data-simplebar>
+      <div class="dashboard-content-inner" style="margin-top:80px;">
+        
+        <!-- Dashboard Headline -->
+        <div class="dashboard-headline">
+          <h3>نشر وظيفه</h3>
+  
+          <!-- Breadcrumbs -->
+          <nav id="breadcrumbs" class="dark">
+            <ul>
+              <li><a href="#">الرئيسيه</a></li>
+              <li><a href="#">لوحه التحكم</a></li>
+              <li>اضافه وظيفه</li>
+            </ul>
+          </nav>
+        </div>
+    
+        <!-- Row -->
+        <div class="row">
+
+          <!-- Dashboard Box -->
+          <div class="col-xl-12">
+            <div class="dashboard-box margin-top-0">
+                  <div *ngIf="notifyMessage" class="alert alert-success alert-dismissible fade in" style="text-align:right !important"  >
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <p >
+                          {{notifyMessage}}
+                        </p>
+                  </div>
+              <!-- Headline -->
+              <div class="headline">
+                <h3><i class="icon-feather-folder-plus"></i> نشر وظيفه جديده </h3>
+              </div>
+              <form #jobForm="ngForm"  class="col-xs-12" name="job-form" >  
+              <div class="content with-padding padding-bottom-10">
+
+                <div class="row">
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>عنوان الوظيفه</h5>
+                      <input type="text" class="with-border" 
+                      [(ngModel)]="newJob.title"
+                      #title="ngModel"
+                      name="title"
+                       required/>
+                    </div>
+
+                    <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="title.errors.required" style="text-align:right !important" >
+                      العنوان مطلوب
+                    </div>
+                    <div *ngIf="title.errors.minlength" style="text-align:right !important" >
+                      كلمه المرور يجب ان تكون 3 احرف او اكثر
+                    </div>
+                    </div>
+                  </div>
+                 
+  
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>نوع الوظيفه</h5>
+                      <select class="selectpicker with-border" data-size="7" title="Select Job Type" style=" display: block !important;"
+                      name="type"
+                      [(ngModel)]="newJob.type"
+                      #type="ngModel"
+                      required> 
+                        <option>دوام كامل</option>
+                        <option>دوام عن بعد</option>
+                        <option>دوام جزئي</option>
+                        <option>تدريب</option>
+                        <option>وظيفه مؤقته</option>
+                      </select>
+
+                      <div *ngIf="type.invalid && (category.dirty || type.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="type.errors.required" style="text-align:right !important">
+                       نوع الوظيفه مطلوب
+                      </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+  
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>مجال الوظيفه</h5>
+                      <select class="selectpicker with-border" data-size="7" title="Select Category" style=" display: block !important;" 
+                      name="category"
+                      [(ngModel)]="newJob.category"
+                      #category="ngModel"
+                      required> 
+                        <option *ngFor="let category of jobCategories"> {{category}} </option>  
+                      </select>
+                    
+                    <div *ngIf="category.invalid && (category.dirty || category.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="category.errors.required" style="text-align:right !important">
+                   مجال الوظيفه مطلوب
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+  
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>مكان الوظيفه</h5>
+                      <div class="input-with-icon">
+                        <div id="autocomplete-container">
+                            <select class="selectpicker with-border" data-size="7" title="Select Job Type" style=" display: block !important;"
+                            name="address"
+                            [(ngModel)]="newJob.address"
+                            #address="ngModel"
+                            required> 
+                              <option>الرياض</option>
+                              <option>مكه</option>
+                              <option>جده</option>
+                              <option>المدينه</option>
+                              <option>القصيم</option>
+                              <option>القنفذه</option>
+                              <option>عسير</option>
+                              <option>تبوك</option>
+                              <option>حائل</option>
+                              <option>جازان</option>
+                              <option>نجران</option>
+                              <option>الطائف</option>
+                              <option>الاحساء</option>
+                              <option>الجبيل</option>
+                              <option>القطيف</option>
+                              <option>الخبر</option>
+                              <option>خميس مشيط</option>
+                              <option>ابه</option>
+                              <option>حفر الباطن</option>
+                              <option>ظهران</option>
+                              <option>الدرعيه</option>
+                              <option>الخرج</option>
+                            </select>
+                        </div>
+                        <i class="icon-material-outline-location-on"></i>
+                      </div>
+                    </div>
+
+                    <div *ngIf="address.invalid && (address.dirty || address.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="address.errors.required" style="text-align:right !important">
+                     مكان الوظيفه مطلوب
+                    </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-xl-4">
+                      <div class="submit-field">
+                        <h5>تاريخ انتهاء الوظيفه</h5>
+                        <div class="input-with-icon">
+                          <div id="autocomplete-container">
+                            <input id="autocomplete-input" class="with-border" type="date" placeholder="تاريخ"
+                            [(ngModel)]="newJob.expireDate"
+                            #expireDate="ngModel"
+                            name="expireDate"
+                             required/>
+                          </div>
+                          <i class="icon-material-outline-location-on"></i>
+                        </div>
+
+                        <div *ngIf="expireDate.invalid && (expireDate.dirty || expireDate.touched)"
+                        class="notification error closeable" role="alert" >
+                        <div *ngIf="expireDate.errors.required" style="text-align:right !important">
+                          تاريخ الانتهاء مطلوب 
+                        </div>
+                        </div>
+
+                      </div>
+                    </div>
+  
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>الراتب</h5>
+                      <div class="row">
+                        <div class="col-xl-6">
+                          <div class="input-with-icon">
+                            <input class="with-border" type="number" placeholder="Min" 
+                            [(ngModel)]="newJob.Min"
+                            #Min="ngModel"
+                            name="Min"
+                            ng-pattern="/^[0-9]/"
+                             required/>
+                            <i class="currency">SAR</i>
+                          </div>
+
+                          <div *ngIf="Min.invalid && (Min.dirty || Min.touched)"
+                          class="notification error closeable" role="alert" >
+                          <div *ngIf="Min.errors.required" style="text-align:right !important">
+                           الحد الادني للراتب مطلوب
+                          </div>
+                          <div [hidden]="!Min.errors?.pattern" style="text-align:right !important" >
+                             الرقم غير صحيح
+                             </div> 
+                          </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                          <div class="input-with-icon">
+                            <input class="with-border" type="number" placeholder="Max" 
+                            [(ngModel)]="newJob.Max"
+                            #Max="ngModel"
+                            name="Max"
+                            ng-pattern="/^[0-9]/"
+                             required/>
+                            <i class="currency">SAR</i>
+                          </div>
+
+                          <div *ngIf="Min.invalid && (Min.dirty || Min.touched)"
+                          class="notification error closeable" role="alert" >
+                          <div *ngIf="Min.errors.required" style="text-align:right !important">
+                           الحد الادني للراتب مطلوب
+                          </div>
+                          <div [hidden]="!Min.errors?.pattern" style="text-align:right !important" >
+                             الرقم غير صحيح
+                             </div> 
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>الكلمات المفتاحيه <span>(اختياري)</span>  <i class="help-icon" data-tippy-placement="right" title="Maximum of 10 tags"></i></h5>
+                      <div class="keywords-container">
+                        <div class="keyword-input-container">
+                          <input type="text" class="keyword-input with-border" placeholder="مثال : عنوان الوظيفه / متطلبات الوظيفه / نوع الدوام "
+                          [(ngModel)]="newJob.tag"
+                          #tag="ngModel"
+                          name="tag"
+                           required/>
+                          <button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+                        </div>
+                        <div class="keywords-list"><!-- keywords go here --></div>
+                        <div class="clearfix"></div>
+                      </div>
+  
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5>الايميل</h5>
+                        <input type="email" class="with-border" 
+                        [(ngModel)]="newJob.email"
+                        #email="ngModel"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                        name="email"
+                        placeholder="الايميل المراد ارسال السيره الذاتيه اليه"
+                         required/>
+                      </div>
+  
+                      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="email.errors.required" style="text-align:right !important" >
+                        الايميل مطلوب
+                      </div>
+                      <div [hidden]="!email.errors?.pattern" style="text-align:right !important" >
+                          الايميل غير صحيح
+                         </div> 
+                      </div>
+                    </div>
+  
+                  <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>وصف الوظيفه</h5>
+                      <textarea cols="30" rows="5" class="with-border"  
+                      [(ngModel)]="newJob.description"
+                      #description="ngModel"
+                      name="description"
+                       required></textarea>
+                    
+
+                      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="description.errors.required" style="text-align:right !important">
+                          وصف الوظيفه مطلوب
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-xl-12">
+                  <input  href="#" class="button ripple-effect big margin-top-30" type="submit"   (click)="postJob()" value="اضف الوظيفه"  >
+                </div>
+
+            </form>
+            </div>
+          </div>
+
+  
+        </div>
+        <!-- Row / End -->
+  
+        <app-footer></app-footer>
+  
+      </div>
+    </div>
+    <!-- Dashboard Content / End -->
+  </div>
+ 
+  <!-- Dashboard Container / End -->
+
+  <!-- Wrapper / End -->
+  
+  
+  <!-- Scripts
+  ================================================== -->
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.0.min.js"></script>
+  <script src="js/mmenu.min.js"></script>
+  <script src="js/tippy.all.min.js"></script>
+  <script src="js/simplebar.min.js"></script>
+  <script src="js/bootstrap-slider.min.js"></script>
+  <script src="js/bootstrap-select.min.js"></script>
+  <script src="js/snackbar.js"></script>
+  <script src="js/clipboard.min.js"></script>
+  <script src="js/counterup.min.js"></script>
+  <script src="js/magnific-popup.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/custom.js"></script>
+  
+  <!-- Snackbar // documentation: https://www.polonel.com/snackbar/ -->
+  <script>
+  // Snackbar for user status switcher
+  $('#snackbar-user-status label').click(function() { 
+    Snackbar.show({
+      text: 'Your status has been changed!',
+      pos: 'bottom-center',
+      showAction: false,
+      actionText: "Dismiss",
+      duration: 3000,
+      textColor: '#fff',
+      backgroundColor: '#383838'
+    }); 
+  }); 
+  </script>
+  
+  <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
+  <script src="js/chart.min.js"></script>
+  <script>
+    Chart.defaults.global.defaultFontFamily = "Nunito";
+    Chart.defaults.global.defaultFontColor = '#888';
+    Chart.defaults.global.defaultFontSize = '14';
+  
+    var ctx = document.getElementById('chart').getContext('2d');
+  
+    var chart = new Chart(ctx, {
+      type: 'line',
+  
+      // The data for our dataset
+      data: {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        // Information about the dataset
+           datasets: [{
+          label: "Views",
+          backgroundColor: 'rgba(42,65,232,0.08)',
+          borderColor: '#2a41e8',
+          borderWidth: "3",
+          data: [196,132,215,362,210,252],
+          pointRadius: 5,
+          pointHoverRadius:5,
+          pointHitRadius: 10,
+          pointBackgroundColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointBorderWidth: "2",
+        }]
+      },
+  
+      // Configuration options
+      options: {
+  
+          layout: {
+            padding: 10,
+          },
+  
+        legend: { display: false },
+        title:  { display: false },
+  
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              display: false
+            },
+            gridLines: {
+               borderDash: [6, 10],
+               color: "#d8d8d8",
+               lineWidth: 1,
+                  },
+          }],
+          xAxes: [{
+            scaleLabel: { display: false },  
+            gridLines:  { display: false },
+          }],
+        },
+  
+          tooltips: {
+            backgroundColor: '#333',
+            titleFontSize: 13,
+            titleFontColor: '#fff',
+            bodyFontColor: '#fff',
+            bodyFontSize: 13,
+            displayColors: false,
+            xPadding: 10,
+            yPadding: 10,
+            intersect: false
+          }
+      },
+  
+  
+  });
+  
+  </script>
+  
+  
+  <!-- Google Autocomplete -->
+  <script>
+    function initAutocomplete() {
+       var options = {
+        types: ['(cities)'],
+        // componentRestrictions: {country: "us"}
+       };
+  
+       var input = document.getElementById('autocomplete-input');
+       var autocomplete = new google.maps.places.Autocomplete(input, options);
+  
+      if ($('.submit-field')[0]) {
+          setTimeout(function(){ 
+              $(".pac-container").prependTo("#autocomplete-container");
+          }, 300);
+      }
+    }
+  </script>
+  
+  <!-- Google API & Maps -->
+  <!-- Geting an API Key: https://developers.google.com/maps/documentation/javascript/get-api-key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
+  
+  
+
+
+

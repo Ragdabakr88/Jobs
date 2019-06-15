@@ -1,0 +1,41 @@
+.nav-content {
+    display:none;
+}
+.card{
+    padding: 5%; 
+    background-color: #200175;
+}
+
+.card form{
+    padding: 5%; 
+    background-color: #faf9fc;
+}
+.post {
+    float:right;
+    margin-left: 45%;
+    color:#ffffff;
+}
+.btn, .btn-large, .btn-small {
+    background-color: #200175;
+    color:#ffffff;
+}
+.circle{
+border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+.box{
+    margin-top: 9px;
+    margin-bottom:5px;
+}
+.date{
+    color:rgb(179, 176, 176);
+    font-size: 12px;
+}
+.commentContainer{
+    overflow-y: scroll;
+    max-height:900px;
+}
+.box{
+    background-color: rgb(233, 228, 250);
+}

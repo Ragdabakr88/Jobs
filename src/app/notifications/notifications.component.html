@@ -1,0 +1,25 @@
+<p>
+  notifications works!
+</p>
+<ul *ngFor="let n of notify">
+  <li>{{n.message}}</li>
+  <li>{{n.username}}</li>
+  <li>{{n.created}}</li>
+  <li>{{TimeFromNow(n.created)}}</li>
+  <i *ngIf="!n.read" class="material-icons"   >
+    false
+    </i>
+    <i *ngIf="n.read" class="material-icons">
+     true
+      </i>
+
+      <i  class="material-icons"  [ngClass]="n.read?'true':'false'">
+     icons
+         </i>
+  <ul>
+    <li><button class="btn warning" (click)="reads(n)" >read</button> </li>
+    <li><button class="btn default" (click)="delete(n)"  >delete</button> </li>
+  </ul>
+</ul>
+
+

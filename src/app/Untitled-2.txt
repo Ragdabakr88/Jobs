@@ -1,0 +1,162 @@
+<div class='col-md-12'  style='text-align:right '>
+<div class='row'>
+
+<div class='col-md-12'    style="border:2px solid #ccc ; padding-top:20px; margin-bottom: 20px; padding-bottom:20px" >
+<div class='col-md-12'> ارفق الصورة الشخصية  [file file-1 limit:10485760 filetypes:jpg|png|gif]</label></div>
+</div>
+
+<div class='col-md-12'    style="border:2px solid #ccc ; padding-top:20px; margin-bottom: 20px;" >
+
+<div class='col-md-6'><label class="menu">[select* menu-1 "جنس المتقدم" "ذكر" "انثي"]</label></div>
+<div class='col-md-6'><label>[text* text-1 placeholder "الوظيفه المتقدم لها :*"]</label></div>
+
+<div class='col-md-3'><label></label>[text* text-4 placeholder "الاسم الاول"]</div>
+<div class='col-md-3'><label></label>[text* text-5 placeholder "اسم الاب"]</div>
+<div class='col-md-3'><label></label>[text* text-3 placeholder "اسم االجد"]</div>
+<div class='col-md-3'><label></label>[text* text-2 placeholder "اسم العائلة"]</div>
+
+
+<div class='col-md-3'><label></label>[date* date-1 placeholder "تاريخ الميلاد"]</div>
+<div class='col-md-3'><label></label>[text* text-6 placeholder "مكان الميلاد"]</div>
+<div class='col-md-3'><label></label>[text* text-8 placeholder "الجنسية"]</div>
+<div class='col-md-3'><label></label>[text* text-7 placeholder "الديانة"]</div>
+
+
+</div>
+
+
+
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px; margin-bottom 20px;margin-bottom 20px;" >
+
+<div class='col-md-4'><label></label>[text* text-9 placeholder "تاريخ الاصدار"]</div>
+<div class='col-md-4'><label></label>[text* text-11 placeholder "مكان الاصدار"]</div>
+<div class='col-md-4'><label></label>[text* text-10 placeholder "رقم بطاقة الاحوال المدنية"]</div>
+
+<div class='col-md-4'><label></label>[text text-12 placeholder "تاريخ الاصدار"]</div>
+<div class='col-md-4'><label></label>[text text-14 placeholder "مكان الاصدار"]</div>
+<div class='col-md-4'><label></label>[text text-13 placeholder "رقم الجواز"]</div>
+
+<div class='col-md-4'><label></label>[select menu-3 "هل الاقامة سارية المفعول" "نعم" "لا"]</div>
+<div class='col-md-4'><label></label>[select  menu-2 "هل الاقامة قابلة للنقل" "نعم" "لا"]</div>
+<div class='col-md-4'><label></label>[text text-15 placeholder "المهنة في الاقامة"]</div>
+
+</div>
+
+
+<div class='col-md-12'><h2>رخصة القيادة</h2></div>
+
+<div class='col-md-12' style="border:2px solid #ccc ; padding-top:20px; margin-bottom 20px;margin-bottom 10px;"  >
+<div class='col-md-6'><label></label>[text text-20 placeholder "رقمها"]</div>
+<div class='col-md-6'><label></label>[text text-21 placeholder "نوعها"]</div>
+<div class='col-md-6'><label></label>[text text-18 placeholder "تاريخ انتهائها"]</div>
+<div class='col-md-6'><label></label>[text text-19 placeholder "تاريخ صدورها"]</div>
+<div class='col-md-6'><label></label>[text text-16 placeholder "فصيلة الدم"]</div>
+<div class='col-md-6'><label></label>[text text-17 placeholder "مكان الاصدار"]</div>
+</div>
+
+<div class='col-md-12'><h2>معلومات شخصية</h2></div>
+<div class='col-md-12' style="border:2px solid #ccc ; padding-top:20px; margin-bottom :20px" >
+<div class='col-md-4'><label></label>[tel* tel-1 placeholder "رقم الجوال"]</div>
+<div class='col-md-4'><label></label>[email* email-1 placeholder "البريد الالكتروني"]</div>
+<div class='col-md-4'><label></label>[text text-22 placeholder "العنوان الحالي"]</div>
+<div class='col-md-4'><label></label>[number number-1 min:1 placeholder "في حال الاجابه بنعم كم عددهم"]</div>
+<div class='col-md-4'><label></label>[select* menu-4 "هل تعول احد" "نعم" "لا"]</div>
+<div class='col-md-4'><label></label>[select* menu-5 "الحالة الاجتماعية" "متزوج" "اعزب"]</div>
+</div>
+
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px; margin-bottom: 20px"  >
+<div class='col-md-6'><label></label>[select* menu-6 "هل تعاني من امراض مذمنة ؟" "نعم" "لا"]</div>
+<div class='col-md-6'><label></label>[select* menu-7 "هل انت مدخن ؟" "نعم" "لا"]</div>
+<div class='col-md-6'><label></label>[text text-23 placeholder "في حال الإجابة بنعم يرجى بيان التفاصيل . "]</div>
+<div class='col-md-6'><label></label>[select* menu-8 "هل سبق وأجريت عملية جراحية  ؟" "نعم" "لا"]</div>
+</div>
+
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px; margin-bottom: 20px;"  >
+<div class='col-md-6'><label></label>[text text-24 placeholder "في حال الإجابة بنعم يرجى بيان التفاصيل . "]</div>
+<div class='col-md-6'><label></label>[select* menu-9 "هل صدرت بحقك أحكام قضائية ؟" "نعم" "لا"]</div>
+</div>
+
+<div class='col-md-12'><h2>المؤهلات الدراسية</h2></div>
+
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px; margin-bottom :20px;"  >
+<div class='col-md-6'><label></label>[text* text-29 placeholder " الكليه او الجامعه"]</div>
+<div class='col-md-6'><label></label>[text* text-30 placeholder " المؤهل العلمي"]</div>
+<div class='col-md-3'><label></label>[text* text-25 placeholder " التقدير"]</div>
+<div class='col-md-3'><label></label>[text* text-26 placeholder " سنة التخرج"]</div>
+<div class='col-md-3'><label></label>[text* text-27 placeholder " التخصص"]</div>
+<div class='col-md-3'><label></label>[text* text-28 placeholder " البلد"]</div>
+</div>
+
+<div class='col-md-12'><h2>الدورات التدريبيه</h2></div>
+
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px;margin-bottom :20px;">
+<table>
+  <tr>
+    <th>الدورات التدريبية</th>
+    <th>اسم الجهة</th>
+    <th>مدة الدورة</th>
+    <th>التخصص</th>
+  </tr>
+  <tr>
+    <td>[text course1]</td>
+    <td>[text institute1]</td>
+    <td>[text duration1]</td>
+    <td>[text Specialize1]</td>
+  </tr>
+  <tr>
+    <td>[text course2]</td>
+    <td>[text institute2]</td>
+    <td>[text duration2]</td>
+   <td>[text Specialize2]</td>
+  </tr>
+  <tr>
+    <td>[text course3]</td>
+    <td>[text institute3]</td>
+    <td>[text duration3]</td>
+   <td>[text Specialize3]</td>
+  </tr>
+
+</table>
+</div>
+
+
+<div class='col-md-12'   style="border:2px solid #ccc ; padding-top:20px; margin-bottom :20px;"  >
+<div class='col-md-6'><label></label>[text* text-31 placeholder " متى تستطيع مباشرة العمل ؟  "]</div>
+<div class='col-md-6'><label></label>[select* menu-10 "هل تعمل حاليا ؟ " "نعم" "لا"]</div>
+</div>
+
+<div class='col-md-12'   style="border:2px solid #ccc ; padding-top:20px; margin-bottom :20px;"  >
+<div class='col-md-6'><label></label>[text* text-32 placeholder " كيف عرفت عن فرصة العمل لدينا : "]</div>
+<div class='col-md-6'><label></label>[select* menu-11 "هل لديك مانع أن تعمل في غير مدينة إقامتك ؟  " "نعم" "لا"]</div>
+<div class='col-md-12'><label></label>[text text-33 placeholder " هل لديك أقارب يعملون لدينا؟ (أذكرهم) :    "]</div>
+</div>
+
+
+<div class='col-md-12'><h2>الاعمال التي مارستها سابقا</h2></div>
+<div class='col-md-12'  style="border:2px solid #ccc ; padding-top:20px;margin-bottom :20px;">
+<div class='col-md-6'><label></label>[text* text-36 placeholder "مدة العمل "]</div>
+<div class='col-md-6'><label></label>[text* text-37 placeholder "مسمى الوظيفة"]</div>
+<div class='col-md-6'><label></label>[text* text-34 placeholder "سبب ترك العمل"]</div>
+<div class='col-md-6'><label></label>[text* text-35 placeholder "الراتب"]</div>
+</div>
+
+<div class='col-md-12'  style="border:2px solid #ccc; padding-top:20px;margin-bottom 10px;margin-top:20px" >
+<div class='col-md-6'><label></label>[text* text-40 placeholder "مدة العمل "]</div>
+<div class='col-md-6'><label></label>[text* text-41 placeholder "مسمى الوظيفة"]</div>
+<div class='col-md-6'><label></label>[text* text-39 placeholder "سبب ترك العمل"]</div>
+<div class='col-md-6'><label></label>[text* text-38 placeholder "الراتب"]</div>
+</div>
+
+<div class='col-md-12'  style="border:2px solid #ccc; padding-top:20px;margin-bottom 10px;margin-top:20px;padding-bottom:20px" >
+<div class='col-md-12'><label></label>[text text-43 placeholder "رقم التأمينات الاجتماعية إن وجد "]</div>
+<div class='col-md-12'><label></label>[text* text-42 placeholder "الحد الادني للراتب"]</div>
+<div class='col-md-6'><label></label>أقر بأن جميع المعلومات الواردة أعلاه هي صحيحة وأوافق على أن يتم التحقق من صحتها  وأي معلومة غير صحيحة ستكون سبباً لإلغاء طلبي .
+</div>
+<div class='col-md-6'><label>ملاحظة : يمكن إرفاق السيرة الذاتية بحجم أقصاه 2 MB .  [file file-2 limit:10485760 filetypes:doc|pdf|cvs] </label></div>
+</div>
+
+<div class='col-md-12' style='color:#000000' >[submit class:send "ارسال"]</div>
+
+
+</div>
+</div>

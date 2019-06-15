@@ -1,0 +1,179 @@
+
+<!-- Dashboard Container -->
+<style>
+  .alert>p, .alert>ul {
+    margin-bottom: 0;
+    text-align: right;
+}
+  .submit-field h5 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      text-align: right;
+  }
+  
+  form{
+    background-color: #ffffff;
+  }
+  </style>
+
+    <!-- Dashboard Content
+    ================================================== -->
+
+<!-- Row -->
+ <div class="row"> 
+  <!-- Dashboard Box -->
+   <div class="col-xl-12">
+      <div class="dashboard-box margin-top-0">
+       
+        <form #settingForm="ngForm"  class="col-xs-12" name="job-form" (ngSubmit)="editSettings(settingForm)">  
+        <div class="content with-padding padding-bottom-10">
+            <div class="row">
+
+                <div class="col-auto">
+                  <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                    <img    class="profile-pic" src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{data.picVersion}}/{{data.picId}}" alt="" /> 
+                    
+                  </div>
+                </div>
+                
+                <input id="file"
+                *ngIf="fileAvalable"
+                ng2FileSelect  [uploader]="uploader"  (onFileSelected)="OnFileSelect($event)"  type="file" accept="image/*" 
+                />
+
+                <input id="filex"
+                *ngIf="!fileAvalable"
+                ng2FileSelect  [uploader]="uploader"  (onFileSelected)="OnFileSelect($event)"  type="file" accept="image/*" 
+                />
+
+                <div class="col">
+                  <div class="row">
+          
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5>الاسم</h5>
+                        <input type="text" class="with-border"
+                        value="{{data.firstName}}"
+                        [(ngModel)]="selectedItem.firstName"
+                        #firstName="ngModel"
+                        name="firstName"
+                        required
+                        />
+                      </div>
+
+                      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="firstName.errors.required" >
+                          الحقل مطلوب
+                      </div>
+                      </div> 
+                    </div> 
+        
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5>المكان</h5>
+                        <input type="text" class="with-border"
+                       value="{{data.lastName}}"
+                        [(ngModel)]="selectedItem.lastName"
+                        #lastName="ngModel"
+                        name="lastName"
+                        required
+                        />
+                      </div>
+
+                      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="lastName.errors.required" >
+                          الحقل مطلوب
+                      </div>
+                      </div> 
+                    </div> 
+
+                    <div class="col-xl-6">
+                      <div class="submit-field">
+                        <h5>الهاتف</h5>
+                        <input type="text" class="with-border"
+                       value="{{data.tel}}"
+                        [(ngModel)]="selectedItem.tel"
+                        #tel="ngModel"
+                        name="tel"
+                        required
+                        />
+                      </div>
+
+                      <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+                      class="notification error closeable" role="alert" >
+                      <div *ngIf="tel.errors.required" >
+                          الحقل مطلوب
+                      </div>
+                      </div> 
+                    </div> 
+    
+        
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>الايميل</h5>
+                    <input type="text" class="with-border"
+                    value="{{data.email}}"
+                    [(ngModel)]="selectedItem.email"
+                    #email="ngModel"
+                    name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    required
+                    >
+                  </div>
+
+                  <div *ngIf="email.errors && email.invalid && (email.dirty || email.touched)"
+                  class="notification error closeable" role="alert" >
+                  <div *ngIf="email.errors.required" style="text-align:right !important">
+                      الايميل مطلوب 
+                  </div>
+              
+                    <div [hidden]="!email.errors?.pattern">
+                      الايميل غير صحيح
+                    </div>
+                  </div>
+
+                </div>
+
+
+                <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>نبذه مختصره</h5>
+                      <textarea cols="30" rows="5" class="with-border"  
+                      [(ngModel)]="selectedItem.description"
+                      #description="ngModel"
+                      name="description"
+                      value="{{data.description}}"
+                      required
+                      > </textarea>
+                    </div>
+
+                    <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="description.errors.required" style="text-align:right !important">
+                        الحقل مطلوب
+                    </div>
+                    </div>
+
+              </div>
+              <div class="col-xl-12">
+                  <div *ngIf="errors.length>0" class="alert alert-danger alert-dismissible fade in">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <p *ngFor="let error of errors">
+                          {{error.detail}}
+                        </p>
+                    </div>
+              </div>
+
+
+              <div class="col-xl-12">
+                  <input  class="button ripple-effect big margin-top-30" type="submit" value="ارسل"  >
+                </div>
+            </div>
+     </div>
+           
+    
+  

@@ -1,0 +1,401 @@
+<style>
+		.submit-field h5 {
+		 text-align: right;
+	}
+	.attachments-container {
+		 display: block; 
+	}
+	.uploadButton {
+		 display: block;
+	}
+	.uploadButton .uploadButton-button {
+		float:left;
+	}
+	.uploadButton .uploadButton-file-name {
+		display:block;
+		margin-top: 10px;
+	}
+	.keyword-input-container .add_more_button{
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 36px;
+			width: 36px;
+			padding: 0;
+			color: #fff;
+			background-color: #9237cb;
+			border-radius: 4px;
+			margin: 6px;
+			font-size: 19px;
+			text-align: center;
+			line-height: 36px;
+	}
+	.dashboard-box .bidding-widget, .popup-tab-content .bidding-widget {
+			text-align: right;
+	}
+	.slider{
+		box-shadow: none;
+	}
+	.range{
+		font-size: 28px;
+	}
+	
+	.keywords-list {
+			display: block;
+			float: none;
+			height: 0;
+	}
+	</style>
+
+	<!-- <div id="wrapper">
+
+	<div class="dashboard-container">
+	
+			 -->
+		
+		
+			<!-- Dashboard Content
+			================================================== -->
+
+         <div class="row">     
+				 <form  #settingsForm="ngForm"  class="col-xs-12" name="job-form"   >
+					<!-- Row -->
+					<div class="row">
+					
+						<!-- Dashboard Box -->
+						<div class="col-xl-12">
+							<div class="dashboard-box margin-top-0">
+								<div *ngIf="errors.length>0" class="alert alert-danger alert-dismissible fade in">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<p *ngFor="let error of errors">
+											{{error.detail}}
+										</p>
+								</div>
+								<div *ngIf="notifyMessage" class="alert alert-success alert-dismissible fade in" style="text-align:right !important"  >
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<p >
+												{{notifyMessage}}
+											</p>
+								</div>
+								<!-- Headline -->
+								<div class="headline">
+									<h3><i class="icon-material-outline-account-circle"></i>حسابي</h3>
+								</div>
+								<div class="content with-padding padding-bottom-0">
+		
+									<div class="row">
+		
+										<div class="col-auto">
+											<div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+												<img class="profile-pic" src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{data.picVersion}}/{{data.picId}}" alt="" />
+											</div>
+											</div>
+
+												<input id="file"
+												ng2FileSelect  [uploader]="uploader"  (onFileSelected)="OnFileSelect($event)"  type="file" accept="image/*" 
+												/>
+				
+											<!-- </div>
+										</div> -->
+		
+										<div class="col">
+											<div class="row">		
+												 <div class="col-xl-6">
+													<div class="submit-field">
+														<h5>الاسم الاول</h5>
+                            <input type="text" class="with-border" 
+                            value="{{data.firstName}}"
+														[(ngModel)]="selectedItem.firstName"
+														#firstName="ngModel"
+                            name="firstName"
+														minlength="4"
+														required/>	
+													</div>
+		
+													<div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+													class="notification error closeable" role="alert" >
+													<div *ngIf="firstName.errors.required" >
+														 اسم المستخدم مطلوب 
+													</div>
+													<div *ngIf="firstName.errors.minlength">
+														 اسم المستخدم يجب ان يكون 4 احرف او اكثر
+													</div>
+													<div *ngIf="firstName.errors.forbiddenName">
+														 اسم المستخدم لا يمكن ان يكون bob
+													 </div>
+													</div> 
+													
+												</div> 
+		
+		
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>الاسم الاخير</h5>
+                            <input type="text" class="with-border" 
+                            value="{{data.lastName}}"
+														[(ngModel)]="selectedItem.lastName"
+														#lastName="ngModel"
+														name="lastName"
+                            minlength="4"
+														appForbiddenName="bob"
+														required/>
+													</div>		
+												</div>
+		
+												<div class="col-xl-6">
+														<div class="submit-field">
+															<h5>الهاتف</h5>
+                              <input type="tel" class="with-border" 
+                              value="{{data.tel}}"
+															[(ngModel)]="selectedItem.tel"
+															#tel="ngModel"
+															name="tel"
+                              minlength="9"
+															required/>
+														</div>
+												</div>
+													
+		
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>الايميل</h5>
+                            <input type="text" class="with-border" 
+                            value="{{data.email}}"
+														[(ngModel)]="selectedItem.email"
+														#email="ngModel"
+                            name="email"
+														pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+														required/>
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+									</div>
+		
+								</div>
+							<!-- </div> 
+						</div> -->
+		
+		
+						<!-- Dashboard Box -->
+						<div class="col-xl-12">
+								<div class="dashboard-box">
+			
+									<!-- Headline -->
+									<div class="headline">
+										<h3><i class="icon-material-outline-face"></i>ملفي الشخصي</h3>
+									</div>
+			
+									<div class="content">
+										<ul class="fields-ul">
+										<li>
+											<div class="row">
+												<div class="col-xl-4">
+													<div class="submit-field">
+														<div class="bidding-widget">
+															<!-- Headline -->
+															<span class="bidding-detail"><strong> سعر الساعه </strong> <span class="range">(${{slider}})</span></span>
+															<!-- Slider -->
+													
+															 <input class="slider" value="{{data.slider}}" type="range" min="5" max="300"  (input)="valueChanged($event.target.value)">
+														</div>
+													</div>
+												</div>
+			
+													<div class="col-xl-4">
+														<div class="submit-field">
+															<h5>المهارات <i class="help-icon" data-tippy-placement="right" title="Add up to 10 skills"></i></h5>
+															<!-- Skills List -->
+															<div class="keywords-container">
+																<div class="keyword-input-container" >
+																	<input type="text" class="keyword-input with-border" placeholder="e.g. Angular, Laravel"
+																	[(ngModel)]='skillName'
+                                  name = 'skillName'
+                                  value={{data.skills}}
+																	required/>
+																	<button (click)='addSkill(skillName)' class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+																</div>
+																<div class="keywords-list" *ngFor='let s of skillList'>
+																	<span class="keyword"><span (click)="deletSkill(s.skill)" class="keyword-remove"></span><span class="keyword-text">{{s.skill}}</span></span>
+																</div>
+																<div class="clearfix"></div>
+															</div>
+														</div>
+													</div>
+			
+			
+												<div class="col-xl-4">
+													<div class="submit-field">
+														<h5>المرفقات</h5>
+														
+														<!-- Attachments -->
+														<div class="attachments-container margin-top-0 margin-bottom-0">
+															<div class="attachment-box ripple-effect">
+																<span>السيره الذاتيه</span>
+																<i>PDF</i>
+																<button class="remove-attachment" data-tippy-placement="top" title="Remove"></button>
+															</div>
+														</div>
+														<div class="clearfix"></div>
+														
+														<!-- Upload Button -->
+														<div class="uploadButton margin-top-0">
+															<input class="uploadButton-input"    ng2FileSelect [uploader]="uploader" (onFileSelected)="OnCvSelect($event)"  type="file" accept="image/*, application/pdf" id="upload" multiple required/>
+															<label class="uploadButton-button ripple-effect" for="upload">رفع الملفات</label>
+															<span class="uploadButton-file-name"> الحد الاعلي للملفات 10 MB </span>
+														</div>
+			
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="row">
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>المسمي الوظيفي</h5>
+														<input type="text" class="with-border" 
+                            value="{{data.jobTile}}"
+                            [(ngModel)]="selectedItem.jobTile"
+															#jobTile="ngModel"
+															name="jobTile"
+                              minlength="4"
+															 required/>
+													</div>
+												</div>
+			
+												<div class="col-xl-6">
+													<div class="submit-field">
+														<h5>الجنسيه</h5>
+														<select   title="Select Job Type"
+                            value="{{data.nationality}}"
+                            [(ngModel)]="selectedItem.nationality"
+                            #nationality="ngModel" 
+														name="nationality"
+														required
+														>
+															<option value="AR">Argentina</option>
+															<option value="AM">Armenia</option>
+															<option value="AW">Aruba</option>
+															<option value="AU">Australia</option>
+															<option value="AT">Austria</option>
+															<option value="AZ">Azerbaijan</option>
+															<option value="BS">Bahamas</option>
+															<option value="BH">Bahrain</option>
+															<option value="BD">Bangladesh</option>
+															<option value="BB">Barbados</option>
+															<option value="BY">Belarus</option>
+															<option value="BE">Belgium</option>
+															<option value="BZ">Belize</option>
+															<option value="BJ">Benin</option>
+															<option value="BM">Bermuda</option>
+															<option value="BT">Bhutan</option>
+															<option value="BG">Bulgaria</option>
+															<option value="BF">Burkina Faso</option>
+															<option value="BI">Burundi</option>
+															<option value="KH">Cambodia</option>
+															<option value="CM">Cameroon</option>
+															<option value="CA">Canada</option>
+															<option value="CV">Cape Verde</option>
+															<option value="KY">Cayman Islands</option>
+															<option value="CO">Colombia</option>
+															<option value="KM">Comoros</option>
+															<option value="CG">Congo</option>
+															<option value="CK">Cook Islands</option>
+															<option value="CR">Costa Rica</option>
+															<option value="CI">Côte d'Ivoire</option>
+															<option value="HR">Croatia</option>
+															<option value="CU">Cuba</option>
+															<option value="CW">Curaçao</option>
+															<option value="CY">Cyprus</option>
+															<option value="CZ">Czech Republic</option>
+															<option value="DK">Denmark</option>
+															<option value="DJ">Djibouti</option>
+															<option value="DM">Dominica</option>
+															<option value="DO">Dominican Republic</option>
+															<option value="EC">Ecuador</option>
+															<option value="EG">Egypt</option>
+															<option value="GP">Guadeloupe</option>
+															<option value="GU">Guam</option>
+															<option value="GT">Guatemala</option>
+															<option value="GG">Guernsey</option>
+															<option value="GN">Guinea</option>
+															<option value="GW">Guinea-Bissau</option>
+															<option value="GY">Guyana</option>
+															<option value="HT">Haiti</option>
+															<option value="HN">Honduras</option>
+															<option value="HK">Hong Kong</option>
+															<option value="HU">Hungary</option>
+															<option value="IS">Iceland</option>
+															<option value="IN">India</option>
+															<option value="ID">Indonesia</option>
+															<option value="NO">Norway</option>
+															<option value="OM">Oman</option>
+															<option value="PK">Pakistan</option>
+															<option value="PW">Palau</option>
+															<option value="PA">Panama</option>
+															<option value="PG">Papua New Guinea</option>
+															<option value="PY">Paraguay</option>
+															<option value="PE">Peru</option>
+															<option value="PH">Philippines</option>
+															<option value="PN">Pitcairn</option>
+															<option value="PL">Poland</option>
+															<option value="PT">Portugal</option>
+															<option value="PR">Puerto Rico</option>
+															<option value="QA">Qatar</option>
+															<option value="RE">Réunion</option>
+															<option value="RO">Romania</option>
+															<option value="RU">Russian Federation</option>
+															<option value="RW">Rwanda</option>
+															<option value="SZ">Swaziland</option>
+															<option value="SE">Sweden</option>
+															<option value="CH">Switzerland</option>
+															<option value="TR">Turkey</option>
+															<option value="TM">Turkmenistan</option>
+															<option value="TV">Tuvalu</option>
+															<option value="UG">Uganda</option>
+															<option value="UA">Ukraine</option>
+															<option value="GB">United Kingdom</option>
+															<option value="US" selected>United States</option>
+															<option value="UY">Uruguay</option>
+															<option value="UZ">Uzbekistan</option>
+															<option value="YE">Yemen</option>
+															<option value="ZM">Zambia</option>
+															<option value="ZW">Zimbabwe</option>
+														</select>
+													</div>
+												</div>
+			
+											</div>
+										</li>
+									</ul>
+									</div>
+								</div>
+							</div>
+
+		
+						<div class="col-xl-12">
+								<div class="submit-field">
+									<h5>عرف بنفسك</h5>
+									<textarea cols="30" rows="5" class="with-border"
+                  value="{{data.des}}"
+                  [(ngModel)]="selectedItem.des"
+                  #des="ngModel" 
+									name="des"
+									minlength="10"
+									required></textarea>
+								</div>
+							</div> 
+		
+
+						<!-- Button -->
+						<div class="col-xl-12">
+							<input  class="button ripple-effect big margin-top-30" type="Submit"  (click)="editSettings()" value="حفظ">
+						</div>
+
+        </div>
+       
+
+						

@@ -1,0 +1,515 @@
+<style>
+  .backdrop{
+    background-color:rgba(0,0,0,0.6);
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 999;
+}
+.modal{
+  z-index: 1000;  
+    }
+ .form-box{
+    width: 50%;
+    background-color: #ffffff;
+    position: fixed;
+    top: 25%;
+    right: 25%;
+    padding: 50px;
+}  
+.button{
+  width:100px;
+}
+.apply-now-button {
+    background-color: #9237cb;
+    padding: 15px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 23px;
+    border-radius: 5px;
+}
+.close-now-button {
+    background-color: #9237cb;
+    padding: 5px;
+    width: 20%;
+    color: #ffffff;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.single-page-header .single-page-header-inner {
+    display: flex;
+    text-align: right;
+}
+.single-page-header .header-image {
+    margin-left: 35px;
+}
+
+.verified-badge-with-title {
+    margin-right: 20px;
+}
+#wrapper{
+  text-align: right;
+}
+</style>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Header Container
+  ================================================== -->
+ 
+  <div class="clearfix"></div>
+  <!-- Header Container / End -->
+
+       
+  <div  class="backdrop" [ngStyle]="{'display':display}"></div>
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+      
+  <!-- Apply for a job popup
+  ================================================== -->
+   <div class="form-box">
+     <!-- Welcome Text -->
+     <button (click)="closeModelDialog()"  class="close-now-button popup-with-zoom-anim">اغلاق<i class="icon-material-outline-arrow-right-alt"></i></button>
+				<div class="welcome-text">
+            <h3>قم بتحميل سيرتك الذاتية </h3>
+          </div>
+            <!-- Form -->
+            <form method="post" id="apply-now-form" #settingsForm="ngForm">
+    
+              <div class="input-with-icon-left">
+                <i class="icon-material-outline-account-circle"></i>
+                <input type="text" class="input-text with-border"  id="name"
+                [(ngModel)]="newSettings.name"
+                #name="ngModel"
+                name="name"
+                placeholder="الاسم كاملا" required/>
+              </div>
+    
+              <div class="input-with-icon-left">
+                <i class="icon-material-baseline-mail-outline"></i>
+                <input type="text" class="input-text with-border" id="emailaddress" 
+                [(ngModel)]="newSettings.email"
+                #email="ngModel"
+                name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                placeholder="الايميل" required/>
+              </div>
+  
+              <div class="input-with-icon-left">
+                  <i class="icon-material-baseline-mail-outline"></i>
+                  <input type="text" class="input-text with-border"
+                  [(ngModel)]="newSettings.phone"
+                  #phone="ngModel"
+                  name="phone"
+                  minlength="9"
+                  id="phoneaddress" placeholder="الجوال" required/>
+                </div>
+    
+              <div class="uploadButton">
+                <input class="uploadButton-input"  accept="image/*, application/pdf" id="upload-cv" 
+                ng2FileSelect [uploader]="uploader" (onFileSelected)="OnCvSelect($event)"  type="file"
+                />
+                <label class="uploadButton-button ripple-effect" for="upload-cv">ارفق ملف</label>
+                <span class="uploadButton-file-name">قم بتحميل سيرتك الذاتية <br> ح اقصي حجم الملف: 50 ميغابايت</span>
+              </div>
+    
+            </form>
+            
+            <!-- Button -->
+            <button class="button margin-top-35 full-width button-sliding-icon ripple-effect" type="submit" form="apply-now-form" (click)="applayJob()" >ارسل<i class="icon-material-outline-arrow-right-alt"></i></button>
+    
+       </div>
+  
+  </div>
+
+  <!-- Titlebar
+  ================================================== -->
+  <div class="single-page-header" data-background-image="images/single-job.jpg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="single-page-header-inner">
+            <div class="left-side">
+              <div class="header-image"><a routerLink="/dashboard/profile-employeer/{{employeeId}}"><img src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{employeeData.picVersion}}/{{employeeData.picId}}" alt=""></a></div>
+              <div class="header-details">
+                <h3>{{data.title}}</h3>
+                <h5 > <a routerLink="/dashboard/profile-employeer/{{employeeId}}">{{employeeData.firstName}} {{employeeData.secondName}}</a> </h5>
+                <ul>
+                  <br>
+                  <li><a routerLink="/dashboard/profile-employeer/{{employeeId}}"><i class="icon-material-outline-business"></i> {{data.address}}</a></li>
+                  <li><div class="verified-badge-with-title">Verified</div></li>
+                </ul>
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="salary-box">
+                <div class="salary-type">متوسط الراتب</div>
+                <div class="salary-amount">{{data.Min}}$ - {{data.Max}}$</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- Page Content
+  ================================================== -->
+  <div class="container">
+    <div class="row">
+      
+      <!-- Content -->
+      <div class="col-xl-8 col-lg-8 content-right-offset">
+  
+        <div class="single-page-section">
+          <h3 class="margin-bottom-25">وصف الوظيفه</h3>
+          <p>{{data.description}}</p>
+        </div>
+  
+        <div class="single-page-section">
+          <h3 class="margin-bottom-30">{{data.address}}</h3>
+          <div id="single-job-map-container">
+            <div id="singleListingMap" data-latitude="51.507717" data-longitude="-0.131095" data-map-icon="im im-icon-Hamburger"></div>
+            
+          </div>
+        </div>
+  
+        <div class="single-page-section">
+          <h3 class="margin-bottom-25">Similar Jobs</h3>
+  
+          <!-- Listings Container -->
+          <div class="listings-container grid-layout">
+  
+              <!-- Job Listing -->
+              <a href="#" class="job-listing">
+  
+                <!-- Job Listing Details -->
+                <div class="job-listing-details">
+                  <!-- Logo -->
+                  <div class="job-listing-company-logo">
+                    <img src="images/company-logo-02.png" alt="">
+                  </div>
+  
+                  <!-- Details -->
+                  <div class="job-listing-description">
+                    <h4 class="job-listing-company">Coffee</h4>
+                    <h3 class="job-listing-title">Barista and Cashier</h3>
+                  </div>
+                </div>
+  
+                <!-- Job Listing Footer -->
+                <div class="job-listing-footer">
+                  <ul>
+                    <li><i class="icon-material-outline-location-on"></i> {{data.address}}</li>
+                    <li><i class="icon-material-outline-business-center"></i> {{data.type}}</li>
+                    <li><i class="icon-material-outline-account-balance-wallet"></i> ${{data.min}}-${{data.max}}</li>
+                    <li><i class="icon-material-outline-access-time"></i>{{data.date}}</li>
+                  </ul>
+                </div>
+              </a>
+  
+              <!-- Job Listing -->
+              <a href="#" class="job-listing">
+  
+                <!-- Job Listing Details -->
+                <div class="job-listing-details">
+                  <!-- Logo -->
+                  <div class="job-listing-company-logo">
+                    <img src="images/company-logo-03.png" alt="">
+                  </div>
+  
+                  <!-- Details -->
+                  <div class="job-listing-description">
+                    <h4 class="job-listing-company">King <span class="verified-badge" title="Verified Employer" data-tippy-placement="top"></span></h4>
+                    <h3 class="job-listing-title">Restaurant Manager</h3>
+                  </div>
+                </div>
+  
+                <!-- Job Listing Footer -->
+                <div class="job-listing-footer">
+                  <ul>
+                    <li><i class="icon-material-outline-location-on"></i> {{data.address}}</li>
+                    <li><i class="icon-material-outline-business-center"></i> {{data.type}}</li>
+                    <li><i class="icon-material-outline-account-balance-wallet"></i> ${{data.min}}-${{data.max}}</li>
+                    <li><i class="icon-material-outline-access-time"></i>{{data.date}}</li>
+                  </ul>
+                </div>
+              </a>
+            </div>
+            <!-- Listings Container / End -->
+  
+          </div>
+      </div>
+      
+  
+      <!-- Sidebar -->
+      <div class="col-xl-4 col-lg-4">
+        <div class="sidebar-container">
+        
+          <!-- <button *ngIf="checkInArr(isApplay,user._id)" > cant applay</button>
+          <button *ngIf="!checkInArr(isApplay,user._id)" >applay</button> -->
+
+          <button *ngIf="authService.isAuthenticated()"    class="apply-now-button popup-with-zoom-anim">لقد تم التقديم علي هذه الوظيفة من قبل<i class="icon-material-outline-arrow-right-alt"></i></button>
+          <button *ngIf="authService.isAuthenticated() "   (click)="openModelDialog()"  class="apply-now-button popup-with-zoom-anim">التقديم علي وظيفة<i class="icon-material-outline-arrow-right-alt"></i></button>
+          <button *ngIf="!authService.isAuthenticated()"  (click)="LoginToApplay()"   class="apply-now-button popup-with-zoom-anim">التقديم علي وظيفة<i class="icon-material-outline-arrow-right-alt"></i></button>
+          
+          <!-- Sidebar Widget -->
+          <div class="sidebar-widget">
+            <div class="job-overview">
+              <div class="job-overview-headline">ملخص الوظيفة</div>
+              <div class="job-overview-inner">
+                <ul>
+                  <li>
+                    <i class="icon-material-outline-location-on"></i>
+                    <span>العنوان</span>
+                    <h5>{{data.address}}</h5>
+                  </li>
+                  <li>
+                    <i class="icon-material-outline-business-center"></i>
+                    <span>نوع الوظيفه</span>
+                    <h5>{{data.type}}</h5>
+                  </li>
+                  <li>
+                    <i class="icon-material-outline-local-atm"></i>
+                    <span>متوسط الراتب</span>
+                    <h5>${{data.Min}} - ${{data.Max}}</h5>
+                  </li>
+                  <li>
+                    <i class="icon-material-outline-access-time"></i>
+                    <span>تاريخ نشر الوظيفه</span>
+                    <h5>{{TimeFromNow(data.createdAt)}}</h5>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Sidebar Widget -->
+          <div class="sidebar-widget">
+            <h3>Bookmark or Share</h3>
+  
+            <!-- Bookmark Button -->
+            <button class="bookmark-button margin-bottom-25">
+              <span class="bookmark-icon"></span>
+             
+              <span *ngIf="!isBookmarked" class="bookmark-text" (click)="bookmark()" >أضف الي المفضلة</span>
+              <span *ngIf="isBookmarked" class="bookmarked-text">من الوظائف المفضلة</span>
+            </button>
+  
+            <!-- Copy URL -->
+            <div class="copy-url">
+              <input id="copy-url" type="text" value="" class="with-border">
+              <button class="copy-url-button ripple-effect" data-clipboard-target="#copy-url" title="Copy to Clipboard" data-tippy-placement="top"><i class="icon-material-outline-file-copy"></i></button>
+            </div>
+  
+            <!-- Share Buttons -->
+            <div class="share-buttons margin-top-25">
+              <div class="share-buttons-trigger"><i class="icon-feather-share-2"></i></div>
+              <div class="share-buttons-content">
+                <span>Interesting? <strong>Share It!</strong></span>
+                <ul class="share-buttons-icons">
+                  <li><a href="#" data-button-color="#3b5998" title="Share on Facebook" data-tippy-placement="top"><i class="icon-brand-facebook-f"></i></a></li>
+                  <li><a href="#" data-button-color="#1da1f2" title="Share on Twitter" data-tippy-placement="top"><i class="icon-brand-twitter"></i></a></li>
+                  <li><a href="#" data-button-color="#dd4b39" title="Share on Google Plus" data-tippy-placement="top"><i class="icon-brand-google-plus-g"></i></a></li>
+                  <li><a href="#" data-button-color="#0077b5" title="Share on LinkedIn" data-tippy-placement="top"><i class="icon-brand-linkedin-in"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  
+  
+  <!-- Footer
+  ================================================== -->
+  <div id="footer">
+    
+    <!-- Footer Top Section -->
+    <div class="footer-top-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+  
+            <!-- Footer Rows Container -->
+            <div class="footer-rows-container">
+              
+              <!-- Left Side -->
+              <div class="footer-rows-left">
+                <div class="footer-row">
+                  <div class="footer-row-inner footer-logo">
+                    <img src="images/logo2.png" alt="">
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Right Side -->
+              <div class="footer-rows-right">
+  
+                <!-- Social Icons -->
+                <div class="footer-row">
+                  <div class="footer-row-inner">
+                    <ul class="footer-social-links">
+                      <li>
+                        <a href="#" title="Facebook" data-tippy-placement="bottom" data-tippy-theme="light">
+                          <i class="icon-brand-facebook-f"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" title="Twitter" data-tippy-placement="bottom" data-tippy-theme="light">
+                          <i class="icon-brand-twitter"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" title="Google Plus" data-tippy-placement="bottom" data-tippy-theme="light">
+                          <i class="icon-brand-google-plus-g"></i>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" title="LinkedIn" data-tippy-placement="bottom" data-tippy-theme="light">
+                          <i class="icon-brand-linkedin-in"></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                </div>
+                
+                <!-- Language Switcher -->
+                <div class="footer-row">
+                  <div class="footer-row-inner">
+                    <select class="selectpicker language-switcher" data-selected-text-format="count" data-size="5">
+                      <option selected>English</option>
+                      <option>Français</option>
+                      <option>Español</option>
+                      <option>Deutsch</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+  
+            </div>
+            <!-- Footer Rows Container / End -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Top Section / End -->
+  
+    <!-- Footer Middle Section -->
+    <div class="footer-middle-section">
+      <div class="container">
+        <div class="row">
+  
+          <!-- Links -->
+          <div class="col-xl-2 col-lg-2 col-md-3">
+            <div class="footer-links">
+              <h3>For Candidates</h3>
+              <ul>
+                <li><a href="#"><span>Browse Jobs</span></a></li>
+                <li><a href="#"><span>Add Resume</span></a></li>
+                <li><a href="#"><span>Job Alerts</span></a></li>
+                <li><a href="#"><span>My Bookmarks</span></a></li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Links -->
+          <div class="col-xl-2 col-lg-2 col-md-3">
+            <div class="footer-links">
+              <h3>For Employers</h3>
+              <ul>
+                <li><a href="#"><span>Browse Candidates</span></a></li>
+                <li><a href="#"><span>Post a Job</span></a></li>
+                <li><a href="#"><span>Post a Task</span></a></li>
+                <li><a href="#"><span>Plans & Pricing</span></a></li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Links -->
+          <div class="col-xl-2 col-lg-2 col-md-3">
+            <div class="footer-links">
+              <h3>Helpful Links</h3>
+              <ul>
+                <li><a href="#"><span>Contact</span></a></li>
+                <li><a href="#"><span>Privacy Policy</span></a></li>
+                <li><a href="#"><span>Terms of Use</span></a></li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Links -->
+          <div class="col-xl-2 col-lg-2 col-md-3">
+            <div class="footer-links">
+              <h3>Account</h3>
+              <ul>
+                <li><a href="#"><span>Log In</span></a></li>
+                <li><a href="#"><span>My Account</span></a></li>
+              </ul>
+            </div>
+          </div>
+  
+          <!-- Newsletter -->
+          <div class="col-xl-4 col-lg-4 col-md-12">
+            <h3><i class="icon-feather-mail"></i> Sign Up For a Newsletter</h3>
+            <p>Weekly breaking news, analysis and cutting edge advices on job searching.</p>
+            <form action="#" method="get" class="newsletter">
+              <input type="text" name="fname" placeholder="Enter your email address">
+              <button type="submit"><i class="icon-feather-arrow-right"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Middle Section / End -->
+    
+    <!-- Footer Copyrights -->
+    <div class="footer-bottom-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            © 2018 <strong>Hireo</strong>. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Copyrights / End -->
+  
+  </div>
+  <!-- Footer / End -->
+  
+  </div>
+  <!-- Wrapper / End -->
+  
+  
+  
+
+  <script>
+  // Snackbar for user status switcher
+  $('#snackbar-user-status label').click(function() { 
+    Snackbar.show({
+      text: 'Your status has been changed!',
+      pos: 'bottom-center',
+      showAction: false,
+      actionText: "Dismiss",
+      duration: 3000,
+      textColor: '#fff',
+      backgroundColor: '#383838'
+    }); 
+  }); 
+  
+  // Snackbar for copy to clipboard button
+  $('.copy-url-button').click(function() { 
+    Snackbar.show({
+      text: 'Copied to clipboard!',
+    }); 
+  }); 
+  </script>
+  

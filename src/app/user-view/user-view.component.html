@@ -1,0 +1,41 @@
+<!-- <h1>{{}}</h1> 
+<p>County: {{}}</p>  -->
+
+<ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">posts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="#buzz" role="tab" data-toggle="tab">followers</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"  href="#references" role="tab" data-toggle="tab">following</a>
+    </li>
+  </ul>
+  
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="profile">
+      <ul *ngFor='let post of posts' style="border:2px solid #ccc">
+        <li>
+           <h3>{{user}}</h3>
+           <p>{{post.post}}</p>
+           <p>{{post.createdAt}}</p>
+           <p>{{post.totalLikes}}</p>
+           <hr>
+           </li>
+      </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="buzz">
+        <ul *ngFor='let follower of followers' style="border:2px solid #ccc">
+            <li>
+               <h3>{{follower.username}}</h3>
+               </li>
+          </ul>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="references"> <ul *ngFor='let follow of following' style="border:2px solid #ccc">
+        <li>
+           <h3>{{follow.username}}</h3>
+           </li>
+      </ul></div>
+  </div>

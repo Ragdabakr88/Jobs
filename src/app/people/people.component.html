@@ -1,0 +1,83 @@
+<app-navbar (onlineUsers)="online($event)"></app-navbar>
+<div class="container" style="margin-top:30px" >
+    <div class="row">
+      <div class="col-md-3 colxs-12"><app-side></app-side></div>
+      <div class="col-md-4 colxs-12 "  *ngFor="let user of data ; let i=index" (click)='profile(user)' >
+          <div class="con">
+    
+              <header>
+                <div class="bio">
+                  <img src="http://www.croop.cl/UI/twitter/images/up.jpg" alt="background" class="bg">
+                  <div class="desc">
+                    <h3>@carlf</h3>
+                    <p>Carl Fredricksen is the protagonist in Up. He also appeared in Dug's Special Mission as a minor character.</p>
+                  </div>
+                </div>
+                
+                <div class="avatarcontainer">
+                  
+                  <img   src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{user.picVersion}}/{{user.picId}}" alt="avatar" class="avatar">
+                  
+                  <div class="hover">
+                      <div class="icon-twitter"></div>
+                  </div>
+                </div>
+          
+          
+              </header>
+          
+              <div class="content">
+                  <p *ngIf="checkOnline(user.username)">Online</p>
+                <h3>{{user.username}}</h3>
+               
+                <div class="data">
+                  <ul>
+                    <li>
+                        {{user.posts.length}}
+                      <span>Tweets</span>
+                    </li>
+                    <li>
+                      {{user.followers.length}}
+                      <span>Followers</span>
+                    </li>
+                    <li>
+                      {{user.following.length}}
+                      <span>Following</span>
+                    </li>
+                  </ul>
+                </div>
+          
+                
+                <div class="follow" *ngIf="!checkInArr(followArray,user._id)"  (click)="addFolow(user)"><div class="icon-twitter"></div> follow</div>
+                <div class="disabled"  *ngIf="checkInArr(followArray,user._id)" ><div class="icon-twitter"></div> following</div>
+                <button  routerLink="/chat/{{user._id}}"> Chat</button>
+              
+
+
+              </div>
+          
+            </div>
+          
+       
+      
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+  
+  <script>
+     $(document).ready(
+
+function iniciar(){
+$('.follow').on("click", function(){
+  $('.follow').css('background-color','#34CF7A');
+  $('.follow').html('<div class="icon-ok"></div> Following');
+});	
+}
+
+);
+  </script>
+	

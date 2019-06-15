@@ -1,0 +1,200 @@
+
+<!-- Dashboard Container -->
+<style>
+  .alert>p, .alert>ul {
+    margin-bottom: 0;
+    text-align: right;
+}
+  .submit-field h5 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      text-align: right;
+  }
+  
+  form{
+    background-color: #ffffff;
+  }
+  </style>
+  
+  <div class="dashboard-container">
+  
+  <app-side></app-side>
+  
+  
+    <!-- Dashboard Content
+    ================================================== -->
+    <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-inner" style="margin-top:80px;">
+          
+          <!-- Dashboard Headline -->
+          <div class="dashboard-headline">
+            <h3>الاعدادات</h3>
+    
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="dark">
+              <ul>
+                <li><a href="#">الرئيسيه</a></li>
+                <li><a href="#">لوحه التحكم</a></li>
+                <li>الاعدادات</li>
+              </ul>
+            </nav>
+          </div>
+      
+          <!-- Row -->
+          <div class="row">
+  
+            <!-- Dashboard Box -->
+            <div class="col-xl-12">
+
+
+              <div class="dashboard-box margin-top-0">
+
+                  <div *ngIf="errors.length>0" class="alert alert-danger alert-dismissible fade in">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <p *ngFor="let error of errors">
+                          {{error.detail}}
+                        </p>
+                    </div>
+                    <div *ngIf="notifyMessage" class="alert alert-success alert-dismissible fade in" style="text-align:right !important"  >
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p >
+                            {{notifyMessage}}
+                          </p>
+                    </div>
+                <!-- Headline -->
+        <div class="headline">
+          <h3><i class="icon-feather-folder-plus"></i> اعدادات الملف الشخصي</h3>
+        </div>
+        <form #settingsForm="ngForm"  class="col-xs-12" name="job-form"  >  
+        <div class="content with-padding padding-bottom-10">
+
+            <div class="row">
+
+                <div class="col-auto">
+                  <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                    <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                    <div class="upload-button"></div>
+                   
+                  </div>
+                  <input class="file-upload" ng2FileSelect [uploader]="uploader" (onFileSelected)="OnFileSelect($event)"  type="file" accept="image/*" 
+                  required/>
+                </div>
+
+                <div class="col">
+                  <div class="row">
+        
+        
+                  <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>الاسم</h5>
+                    <input type="text" class="with-border" value="Tom"
+                    [(ngModel)]="newSettings.firstName"
+                    #firstName="ngModel"
+                    name="firstName"
+                    required/>	
+                  </div>
+
+                  <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                  class="notification error closeable" role="alert" >
+                  <div *ngIf="firstName.errors.required" >
+                      الحقل مطلوب
+                  </div>
+                  </div> 
+                  
+                </div> 
+        
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>المكان</h5>
+                    <input type="text" class="with-border" value="Smith"
+                    [(ngModel)]="newSettings.lastName"
+                    #lastName="ngModel"
+                    name="lastName"
+                    required/>
+                  </div>
+
+                  <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                  class="notification error closeable" role="alert" >
+                  
+                  <div *ngIf="lastName.errors.required" style="text-align:right !important">
+                        المكان مطلوب
+                  </div>
+                  </div>
+                </div>
+        
+                <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>الهاتف</h5>
+                      <input type="tel" class="with-border" value="0555555555"
+                      [(ngModel)]="newSettings.tel"
+                      #tel="ngModel"
+                      name="tel"
+                      minlength="9"
+                      required/>
+                    </div>
+                    
+                    <div *ngIf="tel.invalid && (tel.dirty || tel.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="tel.errors.required">
+                      رقم الهاتف مطلوب
+                    </div>
+                    <div *ngIf="tel.errors.minlength">
+                        رقم الهاتف يجب ان يكون 9 احرف او اكثر
+                    </div>
+                  </div>
+                </div>
+                              
+        
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>الايميل</h5>
+                    <input type="text" class="with-border" value="tom@example.com"
+                    [(ngModel)]="newSettings.email"
+                    #email="ngModel"
+                    name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                    required/>
+                  </div>
+                  
+                  <div *ngIf="email.errors && email.invalid && (email.dirty || email.touched)"
+                    class="notification error closeable" role="alert" >
+                    <div *ngIf="email.errors.required" style="text-align:right !important">
+                        الايميل مطلوب 
+                            </div>
+                
+                      <div [hidden]="!email.errors?.pattern">
+                        الايميل غير صحيح
+                      </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-12">
+                   
+                    <div class="submit-field">
+                      <h5>نبذه مختصره</h5>
+                      <textarea cols="30" rows="5" class="with-border"  
+                      [(ngModel)]="newSettings.description"
+                      #description="ngModel"
+                      name="description"
+                      required> </textarea>
+                      </div> 
+                    
+                   <div class="col-xl-12">
+                    <input  class="button ripple-effect big margin-top-30" type="submit"   (click)="postSetting()" value="اضف الوظيفه"  >
+                  </div>
+             
+              </div>
+            </div>
+  
+          </div>
+        </div>
+          <!-- Row / End -->
+     <app-footer></app-footer>
+</div>
+ 
+    
+   

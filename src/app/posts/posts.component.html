@@ -1,0 +1,56 @@
+
+<ul class="collection" *ngFor="let d of data ;let i =index ">
+  <li class="collection-item avatar">
+    <img src="/assets/img/photo.jpg" alt="" class="circle">
+    <span class="title">{{d.user.username}}</span>
+    <p>{{d.createdAt | date}}<br>
+       country
+    </p>
+
+  <a><i class="material-icons" (click)="fullPost(d)"  >grade</i></a>
+    <div class="row">
+      <div class="col-xs-12 post">
+         <img src="/assets/img/banner.jpg">
+         <h4>{{d.post}}</h4>
+         
+         <ul class="icons">
+           <li><span><i class="material-icons" (click)="addLikes(d)">Likes</i></span>{{d.totalLikes}} </li>
+           <li><span><i class="fal fa-calculator"></i>
+            <i class="material-icons" (click)="addComment(d)" (click)="commentIndex = i" *ngIf="commentIndex !== i"  
+            >comemnts</i></span>{{d.comments.length}}</li>
+            <!-- <li><button type="button" class="btn btn-defult" (click)="commentIndex = i" *ngIf="commentIndex !== i"
+            >Add comment</button></li> -->
+         </ul>
+       
+        </div>
+    </div>
+  </li>
+  <div>
+    <!--comemnt section-->
+      <div class="container commentBox" style="margin-top:30px" *ngIf="commentIndex === i" >
+                <div class="row">
+                    <form class="col s12 form-inline" #commentForm="ngForm" > 
+                        <textarea id="comment" class="textarea form-control"
+                        name="comment"
+                        [(ngModel)]="newComment.comment"
+                        #comment="ngModel"
+                        placeholder="write comment"
+                        required
+                        ></textarea>  
+                        <input  class="waves-effect waves-light btn-small form-control" [disabled]="!commentForm.form.valid" (click)="createComment()" type="submit" name="Add Comment" />
+                        <button type="button" class="btn btn-danger" 
+                        (click)="commentIndex = undefined">Exit</button>
+                    </form>
+                    <div class="col-md-12 colxs-12" *ngFor="let c of comments">
+                      <div class="commentContainer">
+                        <img src="/assets/img/photo.jpg" alt="" class="circle">
+                         <!-- <span class="title">{{comment.username}}</span>  -->
+                         <p>{{c.comment}}</p> 
+                         <p class="date">{{c.createdAt | date}}</p>
+                        </div>
+                    </div>
+                   
+                  </div>         
+        </div><!--comemnt-->
+       </div>
+       </ul>

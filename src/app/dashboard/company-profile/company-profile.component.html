@@ -1,0 +1,134 @@
+
+<!-- Dashboard Container -->
+<style>
+  .alert>p, .alert>ul {
+    margin-bottom: 0;
+    text-align: right;
+}
+  .submit-field h5 {
+  
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      text-align: right;
+  }
+  
+  form{
+    background-color: #ffffff;
+  }
+  </style>
+  
+  <div class="dashboard-container">
+  
+  <app-side></app-side>
+  
+  
+    <!-- Dashboard Content
+    ================================================== -->
+    <div class="dashboard-content-container" data-simplebar>
+        <div class="dashboard-content-inner" style="margin-top:80px;">
+          
+          <!-- Dashboard Headline -->
+          <div class="dashboard-headline">
+            <h3>الملف الشخصي</h3>
+    
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="dark">
+              <ul>
+                <li><a href="#">الرئيسيه</a></li>
+                <li><a href="#">لوحه التحكم</a></li>
+                <li>الملف الشخصي</li>
+              </ul>
+            </nav>
+          </div>
+      
+          <!-- Row -->
+          <div class="row">
+  
+            <!-- Dashboard Box -->
+            <div class="col-xl-12">
+
+
+              <div class="dashboard-box margin-top-0">
+
+                  <div *ngIf="errors>0" class="alert alert-danger alert-dismissible fade in">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <p *ngFor="let error of errors">
+                          {{error.detail}}
+                        </p>
+                    </div>
+                    <div *ngIf="notifyMessage" class="alert alert-success alert-dismissible fade in" style="text-align:right !important"  >
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <p >
+                            {{notifyMessage}}
+                          </p>
+                    </div>
+                <!-- Headline -->
+        <div class="headline">
+          <h3><i class="icon-feather-folder-plus"></i> اعدادات الملف الشخصي</h3>
+        </div>
+ 
+        <div>
+        <div class="content with-padding padding-bottom-10">
+            <div class="row">
+                <div class="col-auto">
+                  <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
+                    <img class="profile-pic" src="https://res.cloudinary.com/dnf8ntdmr/image/upload/v{{selectedItem.picVersion}}/{{selectedItem.picId}}" alt="" />
+                    <div class="upload-button"></div>
+                  </div>
+                </div>
+
+                <div class="col">
+                  <div class="row">
+                  <div class="col-xl-6">
+                  <div class="submit-field"> 
+                    <h5> الاسم : {{selectedItem.firstName}}</h5>
+                  </div>
+                </div> 
+        
+
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>المكان: {{selectedItem.lastName}} </h5>
+                  </div>
+                </div>
+        
+                <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>الهاتف: {{selectedItem.tel}} </h5>
+                  </div>
+                </div>
+                              
+        
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>الايميل : {{selectedItem.email}} </h5>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>تعريف مختصر  : {{selectedItem.description}}</h5>
+                      </div>
+                 </div>
+  
+              </div>
+            </div>
+
+  
+          </div>
+        </div>
+
+   
+      </div>
+   
+       
+            <!-- Row / End -->
+   <app-footer></app-footer>  
+</div>
+ 
+
+   
+<!-- [selectedItem]="selectedItem" -->

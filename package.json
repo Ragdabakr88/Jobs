@@ -37,7 +37,7 @@
     "html-pdf": "^2.2.0",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
-    "latest-version": "^5.0.0",
+    "latest-version": "^7.0.0",
     "lodash": "^4.17.11",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^1.0.0",
